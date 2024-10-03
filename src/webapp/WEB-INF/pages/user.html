@@ -17,15 +17,18 @@
     <th>age</th>
     <th>operation</th>
   </tr>
-  <tr th:each="list: ${list} ">
-    <td th:text="${list.name}">name</td>
-    <td th:text="${list.surname}">surname</td>
-    <td th:text="${list.age}">age</td>
-    <td><form th:method="GET" th:action="@{/{id}/edit(id=${list.getId()})}">
-      <input type="submit" value="Update"/>
-    </form>
+  <tr th:each="user: ${list} ">
+    <td th:text="${user.name}">name</td>
+    <td th:text="${user.surname}">surname</td>
+    <td th:text="${user.age}">age</td>
+    <td>
+      <form th:method="GET" th:action="@{/edit}">
+        <input type="hidden" name="id" th:value="${user.id}" />
+        <input type="submit" value="Update"/>
+      </form>
     </td>
-    <td><form th:method="POST" th:action="@{/{id}/delete(id=${list.getId()})}">
+    <td><form th:method="POST" th:action="@{/delete}">
+      <input type="hidden" name="id" th:value="${user.id}" />
       <input type="submit" value="Delete"/>
     </form>
     </td>
